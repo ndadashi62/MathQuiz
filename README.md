@@ -1,1 +1,1 @@
-# MathQuiz
+# MathQuizApp
