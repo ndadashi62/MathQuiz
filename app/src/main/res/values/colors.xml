@@ -7,5 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="mathquizbackgroundcolor">#C5F3EF</color>
+    <color name="mathquizbackgroundcolor">#9AEEE0</color>
+    <color name="textviewdisplaycolorhint">#B9E7E3</color>
+    <color name="textCursorDrawable">#E70505</color>
+    <color name="buttonBackGroundColor">#B2B1B1</color>
+
+
+
+
 </resources>
