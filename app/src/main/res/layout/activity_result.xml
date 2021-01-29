@@ -29,12 +29,14 @@
         android:orientation="horizontal">
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/radioButtonAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -44,6 +46,7 @@
             </RadioButton>
 
             <RadioButton
+                android:id="@+id/radioButtonRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,6 +56,7 @@
             </RadioButton>
 
             <RadioButton
+                android:id="@+id/radioButtonWrong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -62,6 +66,7 @@
             </RadioButton>
 
             <RadioButton
+                android:id="@+id/radioButtonScoreA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -71,6 +76,7 @@
             </RadioButton>
 
             <RadioButton
+                android:id="@+id/radioButtonScoreD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,6 +107,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textViewRegisterUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Register"
@@ -109,6 +116,7 @@
                 </TextView>
 
                 <EditText
+                    android:id="@+id/editTextUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="name"
@@ -127,6 +135,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/textViewUserScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Score"
@@ -135,6 +144,7 @@
                 </TextView>
 
                 <EditText
+                    android:id="@+id/editTextUserScore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="%"
@@ -149,6 +159,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnShow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/buttonBackGroundColor"
@@ -159,6 +170,7 @@
             </Button>
 
             <Button
+                android:id="@+id/btnBack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/buttonBackGroundColor"
