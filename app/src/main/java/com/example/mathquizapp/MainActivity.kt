@@ -54,28 +54,17 @@ class MainActivity : AppCompatActivity() {
     //  toDO 2 :making validate function for validatin
     fun validate() {
 
+        var resultAdd=randomNum1+randomNum2
+        var resultMinus=randomNum1-randomNum2
+        var resultMultiple=randomNum1*randomNum2
+        var resultDivision= randomNum1/randomNum2
+
         var result = editTextUserAnswer.text.toString().toInt()
-        if (result == randomNum1 + randomNum2) {
 
+        if (result ==resultAdd || result==resultMinus || result==resultMultiple || result==resultDivision) {
             textViewDisplayGenerate.setText("Correct :)").toString()
-        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-
-
-        if (result == randomNum1 - randomNum2) {
-
-            textViewDisplayGenerate.setText("Correct :)").toString()
-        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-
-
-        if (result == randomNum1 * randomNum2) {
-
-            textViewDisplayGenerate.setText("Correct :)").toString()
-        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-
-        if (result == randomNum1 / randomNum2) {
-
-            textViewDisplayGenerate.setText("Correct :)").toString()
-        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
+        }
+      else  (textViewDisplayGenerate.setText("Incorrect :(")).toString()
 
     }
 
