@@ -8,7 +8,8 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-
+    var randomNum1: Int = 0
+    var randomNum2: Int = 0
     var operator: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,14 +27,15 @@ class MainActivity : AppCompatActivity() {
 
 
     //toDO 1 :making generate function for generatin the operations
-    fun generate() {
+    private fun generate() {
 
         val random = Random.nextInt(4)
-        var randomNum1 = Random.nextInt(10)
-        var randomNum2 = Random.nextInt(10)
+        randomNum1 = Random.nextInt(10)
+        randomNum2 = Random.nextInt(10)
         when (random) {
             0 -> {
                 operator = "+"
+                validate()
             }
             1 -> {
                 operator = "-"
@@ -51,12 +53,36 @@ class MainActivity : AppCompatActivity() {
 
     //  toDO 2 :making validate function for validatin
     fun validate() {
-        var result = editTextUserAnswer.text.toString()
+
+        var result = editTextUserAnswer.text.toString().toInt()
+        if (result == randomNum1 + randomNum2) {
+
+            textViewDisplayGenerate.setText("Correct :)").toString()
+        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
 
 
+        if (result == randomNum1 - randomNum2) {
+
+            textViewDisplayGenerate.setText("Correct :)").toString()
+        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
 
 
+        if (result == randomNum1 * randomNum2) {
+
+            textViewDisplayGenerate.setText("Correct :)").toString()
+        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
+
+        if (result == randomNum1 / randomNum2) {
+
+            textViewDisplayGenerate.setText("Correct :)").toString()
+        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
 
     }
 
+
+
+
+
 }
+
+
