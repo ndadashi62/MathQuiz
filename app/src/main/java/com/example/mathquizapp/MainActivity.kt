@@ -1,5 +1,6 @@
 package com.example.mathquizapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,10 +24,17 @@ class MainActivity : AppCompatActivity() {
         btnValidate.setOnClickListener {
             validate()
         }
+        btnClear.setOnClickListener {
+            clear()
+        }
+        btnScore.setOnClickListener {
+            score()
+        }
     }
 
 
     //toDO 1 :making generate function for generatin the operations
+
     private fun generate() {
 
         val random = Random.nextInt(4)
@@ -54,21 +62,29 @@ class MainActivity : AppCompatActivity() {
     //  toDO 2 :making validate function for validatin
     fun validate() {
 
-        var resultAdd=randomNum1+randomNum2
-        var resultMinus=randomNum1-randomNum2
-        var resultMultiple=randomNum1*randomNum2
-        var resultDivision= randomNum1/randomNum2
-
         var result = editTextUserAnswer.text.toString().toInt()
 
-        if (result ==resultAdd || result==resultMinus || result==resultMultiple || result==resultDivision) {
+        var resultAdd = randomNum1 + randomNum2
+        var resultMinus = randomNum1 - randomNum2
+        var resultMultiple = randomNum1 * randomNum2
+        var resultDivision = randomNum1 / randomNum2
+
+
+        if (result == resultAdd || result == resultMinus || result == resultMultiple || result == resultDivision) {
             textViewDisplayGenerate.setText("Correct :)").toString()
-        }
-      else  (textViewDisplayGenerate.setText("Incorrect :(")).toString()
+        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
 
     }
 
+    fun clear() {
+        editTextUserAnswer.text.clear()
+    }
 
+    fun score() {
+        val intentScore = Intent(this@MainActivity, ResultActivity::class.java)
+        startActivity(intentScore)
+
+    }
 
 
 
