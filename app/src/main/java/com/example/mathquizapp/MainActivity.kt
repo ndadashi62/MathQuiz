@@ -9,9 +9,7 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
 
 
-
-
-    var operator: String=""
+    var operator: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,63 +18,45 @@ class MainActivity : AppCompatActivity() {
 
         btnGenerate.setOnClickListener {
             generate()
-
-
         }
-
+        btnValidate.setOnClickListener {
+            validate()
+        }
     }
+
 
     //toDO 1 :making generate function for generatin the operations
     fun generate() {
 
-
-
-
-        val random=Random.nextInt(4)
-
-
-         when (random) {
-             0 -> {
-                 operator = "+"
-                 var randomAdd1 = Random.nextInt(10)
-                 var randomAdd2 = Random.nextInt(10)
-
-                 textViewDisplayGenerate.setText(("$randomAdd1+$randomAdd2"))
-
-
-             }
-             1 -> {
-                 operator = "-"
-                 var randomMinus1=Random.nextInt(10)
-                 var randonMinus2= Random.nextInt(10)
-                 textViewDisplayGenerate.setText(("$randomMinus1-$randonMinus2"))
-
-
-             }
+        val random = Random.nextInt(4)
+        var randomNum1 = Random.nextInt(10)
+        var randomNum2 = Random.nextInt(10)
+        when (random) {
+            0 -> {
+                operator = "+"
+            }
+            1 -> {
+                operator = "-"
+            }
             2 -> {
                 operator = "*"
-                var randomMultiple1=Random.nextInt(10)
-                var randomMultiple2= Random.nextInt(10)
-                textViewDisplayGenerate.setText(("$randomMultiple1*$randomMultiple2"))
-
-
-
             }
             3 -> {
                 operator = "/"
-                var randomDivision1=Random.nextInt(10)
-                var randomDivision2= Random.nextInt(10)
-                textViewDisplayGenerate.setText(("$randomDivision1*$randomDivision2"))
-
             }
-            else-> operator="?"
-
-
+            else -> operator = "?"
         }
+        textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
+    }
+
+    //  toDO 2 :making validate function for validatin
+    fun validate() {
+        var result = editTextUserAnswer.text.toString()
+
+
 
 
 
     }
-
 
 }
