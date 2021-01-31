@@ -10,7 +10,13 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-
+btnBack.setOnClickListener {
+    back()
+}
         }
+    fun back(){
+        val intentBack = Intent(this@ResultActivity, MainActivity::class.java)
+        startActivity(intentBack)
+    }
     }
 

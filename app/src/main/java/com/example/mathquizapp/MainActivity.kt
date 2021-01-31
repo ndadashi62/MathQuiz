@@ -144,7 +144,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun score() {
-        //user goes to the result Activity
+        //user goes to the result Activity with the percentage of the result
+
+
         val intentScore = Intent(this@MainActivity, ResultActivity::class.java)
         startActivity(intentScore)
 
