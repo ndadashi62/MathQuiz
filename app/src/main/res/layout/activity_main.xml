@@ -33,7 +33,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="12dp"
         android:background="@color/edittextBackGroundColor"
-        android:text="0"
+        android:text=""
         android:textCursorDrawable="@color/textCursorDrawable"
         android:textSize="25dp"></EditText>
 
@@ -167,7 +167,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn7"
+                android:id="@+id/btnSeven"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="12dp"

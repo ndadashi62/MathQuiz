@@ -30,6 +30,59 @@ class MainActivity : AppCompatActivity() {
         btnScore.setOnClickListener {
             score()
         }
+
+
+        btnOne.setOnClickListener {
+            var txt1 = editTextUserAnswer.text.toString() + btnOne.text.toString()
+            editTextUserAnswer.setText(txt1).toString()
+        }
+
+        btntwo.setOnClickListener {
+            var txt2 = editTextUserAnswer.text.toString() + btntwo.text.toString()
+            editTextUserAnswer.setText(txt2).toString()
+        }
+        btnthree.setOnClickListener {
+            var txt3 = editTextUserAnswer.text.toString() + btnthree.text.toString()
+            editTextUserAnswer.setText(txt3).toString()
+        }
+        btnFour.setOnClickListener {
+            var txt4 = editTextUserAnswer.text.toString() + btnFour.text.toString()
+            editTextUserAnswer.setText(txt4).toString()
+        }
+        btnFive.setOnClickListener {
+            var txt5 = editTextUserAnswer.text.toString() + btnFive.text.toString()
+            editTextUserAnswer.setText(txt5).toString()
+        }
+        btnSix.setOnClickListener {
+            var txt6 = editTextUserAnswer.text.toString() + btnSix.text.toString()
+            editTextUserAnswer.setText(txt6).toString()
+        }
+        btnSeven.setOnClickListener {
+            var txt7 = editTextUserAnswer.text.toString() + btnSeven.text.toString()
+            editTextUserAnswer.setText(txt7).toString()
+
+        }
+        btnEight.setOnClickListener {
+            var txt8 = editTextUserAnswer.text.toString() + btnEight.text.toString()
+            editTextUserAnswer.setText(txt8).toString()
+
+        }
+        btnNine.setOnClickListener {
+            var txt9 = editTextUserAnswer.text.toString() + btnNine.text.toString()
+            editTextUserAnswer.setText(txt9).toString()
+
+        }
+        btnZero.setOnClickListener {
+            var txtZero = editTextUserAnswer.text.toString() + btnZero.text.toString()
+            editTextUserAnswer.setText(txtZero).toString()
+
+        }
+        btnDot.setOnClickListener {
+            editTextUserAnswer.setText(".").toString()
+        }
+        btnFinish.setOnClickListener {
+            finish()
+        }
     }
 
 
@@ -38,12 +91,11 @@ class MainActivity : AppCompatActivity() {
     private fun generate() {
 
         val random = Random.nextInt(4)
-        randomNum1 = Random.nextInt(10)
-        randomNum2 = Random.nextInt(10)
+        randomNum1 = Random.nextInt(1, 10)
+        randomNum2 = Random.nextInt(1, 10)
         when (random) {
             0 -> {
                 operator = "+"
-                validate()
             }
             1 -> {
                 operator = "-"
@@ -62,18 +114,20 @@ class MainActivity : AppCompatActivity() {
     //  toDO 2 :making validate function for validatin
     fun validate() {
 
-        var result = editTextUserAnswer.text.toString().toInt()
+        var result: Int? = editTextUserAnswer.text.toString().toInt()
 
-        var resultAdd = randomNum1 + randomNum2
-        var resultMinus = randomNum1 - randomNum2
-        var resultMultiple = randomNum1 * randomNum2
-        var resultDivision = randomNum1 / randomNum2
+        var answer = 0
 
+        when (operator) {
+            "+" -> answer = randomNum1 + randomNum2
+            "-" -> answer = randomNum1 - randomNum2
+            "*" -> answer = randomNum1 * randomNum2
+            "/" -> answer = randomNum1 / randomNum2
+        }
 
-        if (result == resultAdd || result == resultMinus || result == resultMultiple || result == resultDivision) {
+        if (answer == result) {
             textViewDisplayGenerate.setText("Correct :)").toString()
         } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-
     }
 
     fun clear() {
@@ -81,11 +135,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun score() {
+        //user goes to the result Activity
         val intentScore = Intent(this@MainActivity, ResultActivity::class.java)
         startActivity(intentScore)
 
     }
-
 
 
 }
