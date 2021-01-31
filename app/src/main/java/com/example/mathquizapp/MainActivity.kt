@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             generate()
         }
         btnValidate.setOnClickListener {
+
             validate()
         }
         btnClear.setOnClickListener {
@@ -78,7 +79,12 @@ class MainActivity : AppCompatActivity() {
 
         }
         btnDot.setOnClickListener {
+            var txtDot = editTextUserAnswer.text.toString() + btnDot.text.toString()
             editTextUserAnswer.setText(".").toString()
+        }
+        btnMinus.setOnClickListener {
+            var txtMinus = editTextUserAnswer.text.toString() + btnMinus.text.toString()
+            editTextUserAnswer.setText("-").toString()
         }
         btnFinish.setOnClickListener {
             finish()
@@ -114,6 +120,7 @@ class MainActivity : AppCompatActivity() {
     //  toDO 2 :making validate function for validatin
     fun validate() {
 
+
         var result: Int? = editTextUserAnswer.text.toString().toInt()
 
         var answer = 0
@@ -128,6 +135,8 @@ class MainActivity : AppCompatActivity() {
         if (answer == result) {
             textViewDisplayGenerate.setText("Correct :)").toString()
         } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
+        editTextUserAnswer.text.clear()
+
     }
 
     fun clear() {
