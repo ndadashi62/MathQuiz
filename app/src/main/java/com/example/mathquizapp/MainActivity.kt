@@ -13,8 +13,8 @@ class MainActivity : AppCompatActivity() {
     var randomNum1: Int = 0
     var randomNum2: Int = 0
     var operator: String = ""
-    var userScore = 0
-    var totalGuess = 0
+    var userScore = 1
+    var totalQuestionvalidated = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,33 +101,40 @@ class MainActivity : AppCompatActivity() {
 
     private fun generate() {
 
-        val random = Random.nextInt(4)
-        randomNum1 = Random.nextInt(1, 10)
-        randomNum2 = Random.nextInt(1, 10)
-        when (random) {
-            0 -> {
-                operator = "+"
+
+        for (i: Int in 0..10) {
+            val random = Random.nextInt(4)
+            randomNum1 = Random.nextInt(1, 10)
+            randomNum2 = Random.nextInt(1, 10)
+            when (random) {
+                0 -> {
+                    operator = "+"
+                }
+                1 -> {
+                    operator = "-"
+                }
+                2 -> {
+                    operator = "*"
+                }
+                3 -> {
+                    operator = "/"
+                }
+                else -> operator = "?"
             }
-            1 -> {
-                operator = "-"
-            }
-            2 -> {
-                operator = "*"
-            }
-            3 -> {
-                operator = "/"
-            }
-            else -> operator = "?"
+            textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
+            totalQuestionvalidated++
+
         }
-        textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
     }
 
     //  toDO 2 :making validate function for validatin
+
     fun validate() {
 
 
         var result = editTextUserAnswer.text.toString().toInt()
         var answer = 0
+
 
         when (operator) {
             "+" -> answer = randomNum1 + randomNum2
@@ -135,17 +142,14 @@ class MainActivity : AppCompatActivity() {
             "*" -> answer = randomNum1 * randomNum2
             "/" -> answer = randomNum1 / randomNum2
         }
-        totalGuess++
+
+
 
         if (answer == result) {
             textViewDisplayGenerate.setText("Correct :)").toString()
             userScore++
         } else
             (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-
-        var percentage = (userScore / totalGuess * 100).toString()
-        Toast.makeText(this, percentage, Toast.LENGTH_SHORT).show()
-
 
 
     }
@@ -156,6 +160,9 @@ class MainActivity : AppCompatActivity() {
 
     fun score() {
 
+
+        var percentage = (userScore / totalQuestionvalidated * 100).toString()
+        Toast.makeText(this, percentage, Toast.LENGTH_SHORT).show()
 
 
         // var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
