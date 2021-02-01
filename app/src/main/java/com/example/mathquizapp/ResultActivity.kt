@@ -3,6 +3,8 @@ package com.example.mathquizapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {
@@ -10,13 +12,18 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-btnBack.setOnClickListener {
-    back()
-}
+
+        editTextUserScore.setText(intent.getStringExtra("key"))
+
+
+        btnBack.setOnClickListener {
+            back()
         }
-    fun back(){
+    }
+
+    fun back() {
         val intentBack = Intent(this@ResultActivity, MainActivity::class.java)
         startActivity(intentBack)
     }
-    }
+}
 

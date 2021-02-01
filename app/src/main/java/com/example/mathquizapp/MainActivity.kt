@@ -13,8 +13,8 @@ class MainActivity : AppCompatActivity() {
     var randomNum1: Int = 0
     var randomNum2: Int = 0
     var operator: String = ""
-    var userScore = 1
-    var totalQuestionvalidated = 1
+    var userScore = 0
+    var totalQuestionvalidated = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btnGenerate.setOnClickListener {
+            totalQuestionvalidated++
             generate()
         }
         btnValidate.setOnClickListener {
@@ -122,8 +123,6 @@ class MainActivity : AppCompatActivity() {
                 else -> operator = "?"
             }
             textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
-            totalQuestionvalidated++
-
         }
     }
 
@@ -151,7 +150,6 @@ class MainActivity : AppCompatActivity() {
         } else
             (textViewDisplayGenerate.setText("Incorrect :(")).toString()
 
-
     }
 
     fun clear() {
@@ -161,12 +159,11 @@ class MainActivity : AppCompatActivity() {
     fun score() {
 
 
-        var percentage = (userScore / totalQuestionvalidated * 100).toString()
-        Toast.makeText(this, percentage, Toast.LENGTH_SHORT).show()
+        var percentage = ((userScore * 100 / totalQuestionvalidated)).toString()+"%"
 
-
-        // var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
-
+        var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
+        scoreIntent.putExtra("key",percentage)
+        startActivity(scoreIntent)
 
     }
 
