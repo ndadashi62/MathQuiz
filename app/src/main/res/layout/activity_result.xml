@@ -95,7 +95,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/scoreList"
+        android:id="@+id/scoreListView"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:layout_marginTop="20dp"

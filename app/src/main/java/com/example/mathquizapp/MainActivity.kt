@@ -2,16 +2,19 @@ package com.example.mathquizapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var listViewScore: ListView
     var randomNum1: Int = 0
     var randomNum2: Int = 0
     var operator: String = ""
+    var userScore = 0
+    var totalGuess = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         btnValidate.setOnClickListener {
 
             validate()
+            editTextUserAnswer.text.clear()
+
         }
         btnClear.setOnClickListener {
             clear()
@@ -121,8 +126,7 @@ class MainActivity : AppCompatActivity() {
     fun validate() {
 
 
-        var result: Int? = editTextUserAnswer.text.toString().toInt()
-
+        var result = editTextUserAnswer.text.toString().toInt()
         var answer = 0
 
         when (operator) {
@@ -131,11 +135,18 @@ class MainActivity : AppCompatActivity() {
             "*" -> answer = randomNum1 * randomNum2
             "/" -> answer = randomNum1 / randomNum2
         }
+        totalGuess++
 
         if (answer == result) {
             textViewDisplayGenerate.setText("Correct :)").toString()
-        } else (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-        editTextUserAnswer.text.clear()
+            userScore++
+        } else
+            (textViewDisplayGenerate.setText("Incorrect :(")).toString()
+
+        var percentage = (userScore / totalGuess * 100).toString()
+        Toast.makeText(this, percentage, Toast.LENGTH_SHORT).show()
+
+
 
     }
 
@@ -144,11 +155,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun score() {
-        //user goes to the result Activity with the percentage of the result
 
 
-        val intentScore = Intent(this@MainActivity, ResultActivity::class.java)
-        startActivity(intentScore)
+
+        // var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
+
 
     }
 
