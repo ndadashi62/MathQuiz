@@ -6,6 +6,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_result.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        textViewMathQuiz.setText(intent.getStringExtra("nameandscore"))
 
 
         btnGenerate.setOnClickListener {
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         btnScore.setOnClickListener {
             score()
         }
+
+
 
 
         btnOne.setOnClickListener {
@@ -163,11 +167,18 @@ class MainActivity : AppCompatActivity() {
 
         var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
         scoreIntent.putExtra("key",percentage)
+
         startActivity(scoreIntent)
+
+
+
+
+
 
     }
 
 
 }
+
 
 

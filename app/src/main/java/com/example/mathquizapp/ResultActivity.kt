@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {
@@ -22,8 +23,13 @@ class ResultActivity : AppCompatActivity() {
     }
 
     fun back() {
+
         val intentBack = Intent(this@ResultActivity, MainActivity::class.java)
+        val username :String=editTextUsername.text.toString()
+        val score=editTextUserScore.text.toString()
+        intentBack.putExtra("nameandscore","$username$score")
         startActivity(intentBack)
+
     }
 }
 
