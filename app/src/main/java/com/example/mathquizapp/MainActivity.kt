@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     var userScore = 0
     var totalQuestionvalidated = 0
     var correctAnswers: String = ""
-    var incorrectAnswerList: String = ""
+    var incorectAnswers: String = ""
     var answerList = ArrayList<String>()
     var resultt: Int = 0
     var answer = 0
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             clear()
         }
         btnScore.setOnClickListener {
-            lucnhResultActivityAndShowUserScore()
+            lucnhResultActivity()
         }
 
 
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
             textViewDisplayGenerate.setText("Correct :)").toString()
             correctAnswers =
                 "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct"
-            answerList.add("$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct")
+            answerList.add(correctAnswers)
             Toast.makeText(
                 this,
                 "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct",
@@ -169,9 +169,9 @@ class MainActivity : AppCompatActivity() {
             userScore++
         } else
             (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-        incorrectAnswerList =
+        incorectAnswers =
             "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect"
-        answerList.add("$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect")
+        answerList.add(incorectAnswers)
         Toast.makeText(
             this,
             "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect",
@@ -183,15 +183,16 @@ class MainActivity : AppCompatActivity() {
         editTextUserAnswer.text.clear()
     }
 
-    fun lucnhResultActivityAndShowUserScore() {
+    fun lucnhResultActivity() {
 
 
         var percentage = ((userScore * 100 / totalQuestionvalidated)).toString() + "%"
 
+        //passing score to other Activity
         var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
         scoreIntent.putExtra("key", percentage)
 
-
+        //passing generated questions to other Activity
         scoreIntent.putExtra("scorelistArray", answerList)
 
         startActivity(scoreIntent)
