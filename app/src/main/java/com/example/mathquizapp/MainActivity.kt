@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result.*
 import kotlin.random.Random
 
+
 class MainActivity : AppCompatActivity() {
     lateinit var listViewScore: ListView
     var randomNum1: Int = 0
@@ -16,11 +17,18 @@ class MainActivity : AppCompatActivity() {
     var operator: String = ""
     var userScore = 0
     var totalQuestionvalidated = 0
+    var correctAnswerList:String=""
+    var incorrectAnswerList:String=""
+    var resultt:Int = 0
+    var answer = 0
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         textViewMathQuiz.setText(intent.getStringExtra("nameandscore"))
+
 
 
         btnGenerate.setOnClickListener {
@@ -107,7 +115,7 @@ class MainActivity : AppCompatActivity() {
     private fun generate() {
 
 
-        for (i: Int in 0..10) {
+
             val random = Random.nextInt(4)
             randomNum1 = Random.nextInt(1, 10)
             randomNum2 = Random.nextInt(1, 10)
@@ -127,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                 else -> operator = "?"
             }
             textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
-        }
+
     }
 
     //  toDO 2 :making validate function for validatin
@@ -135,8 +143,7 @@ class MainActivity : AppCompatActivity() {
     fun validate() {
 
 
-        var result = editTextUserAnswer.text.toString().toInt()
-        var answer = 0
+         resultt = editTextUserAnswer.text.toString().toInt()
 
 
         when (operator) {
@@ -148,12 +155,24 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        if (answer == result) {
+        if (answer == resultt) {
             textViewDisplayGenerate.setText("Correct :)").toString()
+             correctAnswerList="$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct"
+            Toast.makeText(
+                this,
+                "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct",
+                Toast.LENGTH_SHORT
+            ).show()
+
             userScore++
         } else
             (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-
+         incorrectAnswerList="$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect"
+        Toast.makeText(
+            this,
+            "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     fun clear() {
@@ -166,8 +185,14 @@ class MainActivity : AppCompatActivity() {
         var percentage = ((userScore * 100 / totalQuestionvalidated)).toString()+"%"
 
         var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
-        scoreIntent.putExtra("key",percentage)
+        scoreIntent.putExtra("key", percentage)
 
+
+
+
+        val myListScore = arrayListOf<String>(correctAnswerList,incorrectAnswerList)
+        scoreIntent.putExtra("scorelistArray", myListScore)
+        
         startActivity(scoreIntent)
 
 
@@ -176,6 +201,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 
 
 }

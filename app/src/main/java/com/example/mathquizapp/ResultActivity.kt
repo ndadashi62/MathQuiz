@@ -1,12 +1,12 @@
 package com.example.mathquizapp
 
+import android.R.attr.key
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result.*
+
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,18 +17,33 @@ class ResultActivity : AppCompatActivity() {
         editTextUserScore.setText(intent.getStringExtra("key"))
 
 
+
         btnBack.setOnClickListener {
             back()
+
+        }
+        btnShow.setOnClickListener {
+            showListofAnswers()
         }
     }
 
     fun back() {
 
         val intentBack = Intent(this@ResultActivity, MainActivity::class.java)
-        val username :String=editTextUsername.text.toString()
-        val score=editTextUserScore.text.toString()
-        intentBack.putExtra("nameandscore","$username$score")
+        val username: String = editTextUsername.text.toString()
+        val score = editTextUserScore.text.toString()
+        intentBack.putExtra("nameandscore", "$username$score")
+
         startActivity(intentBack)
+
+    }
+
+    fun showListofAnswers() {
+
+//
+
+        val scoreList = textViewScoreList.setText(intent.getSerializableExtra("scorelistArray").toString())
+
 
     }
 }
