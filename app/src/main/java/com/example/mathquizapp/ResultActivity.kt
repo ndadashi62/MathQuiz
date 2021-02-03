@@ -40,9 +40,14 @@ class ResultActivity : AppCompatActivity() {
 
     fun showListofAnswers() {
 
-//
+         var answerList=intent.getStringArrayListExtra("scorelistArray")
 
-        val scoreList = textViewScoreList.setText(intent.getSerializableExtra("scorelistArray").toString())
+        var showingMesage = ""
+        answerList?.forEach {x->
+            showingMesage += x+"\n"
+        }
+
+         textViewScoreList.setText(showingMesage)
 
 
     }

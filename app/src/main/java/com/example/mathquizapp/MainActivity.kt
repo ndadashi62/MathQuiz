@@ -2,6 +2,7 @@ package com.example.mathquizapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,11 +18,11 @@ class MainActivity : AppCompatActivity() {
     var operator: String = ""
     var userScore = 0
     var totalQuestionvalidated = 0
-    var correctAnswerList:String=""
-    var incorrectAnswerList:String=""
-    var resultt:Int = 0
+    var correctAnswers: String = ""
+    var incorrectAnswerList: String = ""
+    var answerList = ArrayList<String>()
+    var resultt: Int = 0
     var answer = 0
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             clear()
         }
         btnScore.setOnClickListener {
-            score()
+            lucnhResultActivityAndShowUserScore()
         }
 
 
@@ -115,26 +116,25 @@ class MainActivity : AppCompatActivity() {
     private fun generate() {
 
 
-
-            val random = Random.nextInt(4)
-            randomNum1 = Random.nextInt(1, 10)
-            randomNum2 = Random.nextInt(1, 10)
-            when (random) {
-                0 -> {
-                    operator = "+"
-                }
-                1 -> {
-                    operator = "-"
-                }
-                2 -> {
-                    operator = "*"
-                }
-                3 -> {
-                    operator = "/"
-                }
-                else -> operator = "?"
+        val random = Random.nextInt(4)
+        randomNum1 = Random.nextInt(1, 10)
+        randomNum2 = Random.nextInt(1, 10)
+        when (random) {
+            0 -> {
+                operator = "+"
             }
-            textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
+            1 -> {
+                operator = "-"
+            }
+            2 -> {
+                operator = "*"
+            }
+            3 -> {
+                operator = "/"
+            }
+            else -> operator = "?"
+        }
+        textViewDisplayGenerate.setText(("$randomNum1 $operator $randomNum2"))
 
     }
 
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
     fun validate() {
 
 
-         resultt = editTextUserAnswer.text.toString().toInt()
+        resultt = editTextUserAnswer.text.toString().toInt()
 
 
         when (operator) {
@@ -157,7 +157,9 @@ class MainActivity : AppCompatActivity() {
 
         if (answer == resultt) {
             textViewDisplayGenerate.setText("Correct :)").toString()
-             correctAnswerList="$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct"
+            correctAnswers =
+                "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct"
+            answerList.add("$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct")
             Toast.makeText(
                 this,
                 "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct",
@@ -167,7 +169,9 @@ class MainActivity : AppCompatActivity() {
             userScore++
         } else
             (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-         incorrectAnswerList="$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect"
+        incorrectAnswerList =
+            "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect"
+        answerList.add("$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect")
         Toast.makeText(
             this,
             "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect",
@@ -179,29 +183,21 @@ class MainActivity : AppCompatActivity() {
         editTextUserAnswer.text.clear()
     }
 
-    fun score() {
+    fun lucnhResultActivityAndShowUserScore() {
 
 
-        var percentage = ((userScore * 100 / totalQuestionvalidated)).toString()+"%"
+        var percentage = ((userScore * 100 / totalQuestionvalidated)).toString() + "%"
 
         var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
         scoreIntent.putExtra("key", percentage)
 
 
+        scoreIntent.putExtra("scorelistArray", answerList)
 
-
-        val myListScore = arrayListOf<String>(correctAnswerList,incorrectAnswerList)
-        scoreIntent.putExtra("scorelistArray", myListScore)
-        
         startActivity(scoreIntent)
 
 
-
-
-
-
     }
-
 
 
 }
