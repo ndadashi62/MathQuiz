@@ -25,6 +25,7 @@ class ResultActivity : AppCompatActivity() {
         btnShow.setOnClickListener {
             showListofAnswers()
         }
+
     }
 
     fun back() {
@@ -44,13 +45,14 @@ class ResultActivity : AppCompatActivity() {
 
 
         var showingMesage = ""
-        answerList?.forEach { x ->
-            showingMesage += x + "\n"
+        answerList?.forEach { it ->
+            showingMesage += it + "\n"
         }
 
         textViewScoreList.setText(showingMesage)
 
 
     }
+
 }
 

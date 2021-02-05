@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
         btnScore.setOnClickListener {
             lucnhResultActivity()
+
         }
 
 
@@ -201,7 +202,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+//a-b
+//    a>b +
+//    a==b 0
+//    a<b -
+
 }
+
 
 
 
