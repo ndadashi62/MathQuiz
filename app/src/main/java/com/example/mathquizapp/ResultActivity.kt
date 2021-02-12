@@ -1,14 +1,17 @@
 package com.example.mathquizapp
 
-import android.R.attr.key
 import android.content.Intent
 import android.os.Bundle
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result.*
 
 
 class ResultActivity : AppCompatActivity() {
+    var answerList: ArrayList<MathQuizLine>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
@@ -17,6 +20,11 @@ class ResultActivity : AppCompatActivity() {
         editTextUserScore.setText(intent.getStringExtra("key"))
 
 
+        val bundle = intent.getBundleExtra("scorelistArray")
+
+        val bundleContent = bundle!!.getSerializable("bundleContent")
+
+        answerList = bundleContent as ArrayList<MathQuizLine>?
 
         btnBack.setOnClickListener {
             back()
@@ -40,19 +48,23 @@ class ResultActivity : AppCompatActivity() {
     }
 
     fun showListofAnswers() {
-
-        var answerList = intent.getStringArrayListExtra("scorelistArray")
-
-
         var showingMesage = ""
-        answerList?.forEach { it ->
-            showingMesage += it + "\n"
-        }
+        when(radioGroup.checkedRadioButtonId){
+            R.id.radioButtonAll-> answerList?.forEach { it ->
+                showingMesage += it.mytoString() + "\n"
+            }
 
+            }
         textViewScoreList.setText(showingMesage)
+
+        }
 
 
     }
 
-}
+
+
+
+
+
 

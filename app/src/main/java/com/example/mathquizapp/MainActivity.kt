@@ -2,7 +2,6 @@ package com.example.mathquizapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     var totalQuestionvalidated = 0
     var correctAnswers: String = ""
     var incorectAnswers: String = ""
-    var answerList = ArrayList<String>()
-    var resultt: Int = 0
+    var answerList = ArrayList<MathQuizLine>()
+    var userAnswer: Int = 0
     var answer = 0
 
 
@@ -142,42 +141,32 @@ class MainActivity : AppCompatActivity() {
     //  toDO 2 :making validate function for validatin
 
     fun validate() {
-
-
-        resultt = editTextUserAnswer.text.toString().toInt()
-
-
+        userAnswer = editTextUserAnswer.text.toString().toInt()
         when (operator) {
             "+" -> answer = randomNum1 + randomNum2
             "-" -> answer = randomNum1 - randomNum2
             "*" -> answer = randomNum1 * randomNum2
             "/" -> answer = randomNum1 / randomNum2
         }
-
-
-
-        if (answer == resultt) {
+        var mathQuizLine = MathQuizLine(randomNum1, randomNum2, operator, answer, userAnswer )
+        if (answer == userAnswer) {
             textViewDisplayGenerate.setText("Correct :)").toString()
-            correctAnswers =
-                "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct"
-            answerList.add(correctAnswers)
             Toast.makeText(
                 this,
-                "$randomNum1 $operator $randomNum2=$resultt your answer $answer is correct",
+                "$randomNum1 $operator $randomNum2=$userAnswer your answer $answer is correct",
                 Toast.LENGTH_SHORT
             ).show()
-
             userScore++
-        } else
+        } else {
             (textViewDisplayGenerate.setText("Incorrect :(")).toString()
-        incorectAnswers =
-            "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect"
-        answerList.add(incorectAnswers)
-        Toast.makeText(
-            this,
-            "$randomNum1 $operator $randomNum2 = $resultt  your answer $answer is incorrect",
-            Toast.LENGTH_SHORT
-        ).show()
+            Toast.makeText(
+                this,
+                "$randomNum1 $operator $randomNum2 = $userAnswer  your answer $answer is incorrect",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        answerList.add(mathQuizLine)
+
     }
 
     fun clear() {
@@ -189,12 +178,15 @@ class MainActivity : AppCompatActivity() {
 
         var percentage = ((userScore * 100 / totalQuestionvalidated)).toString() + "%"
 
+
         //passing score to other Activity
         var scoreIntent = Intent(this@MainActivity, ResultActivity::class.java)
         scoreIntent.putExtra("key", percentage)
 
-        //passing generated questions to other Activity
-        scoreIntent.putExtra("scorelistArray", answerList)
+       // passing generated questions to other Activity
+        var bundle = Bundle()
+        bundle.putSerializable("bundleContent", answerList)
+        scoreIntent.putExtra("scorelistArray", bundle)
 
         startActivity(scoreIntent)
 
