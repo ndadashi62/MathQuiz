@@ -31,7 +31,7 @@ class ResultActivity : AppCompatActivity() {
 
         }
         btnShow.setOnClickListener {
-            showListofAnswers()
+            showListofAllAnswers()
         }
 
     }
@@ -47,20 +47,30 @@ class ResultActivity : AppCompatActivity() {
 
     }
 
-    fun showListofAnswers() {
+    fun showListofAllAnswers() {
         var showingMesage = ""
-        when(radioGroup.checkedRadioButtonId){
-            R.id.radioButtonAll-> answerList?.forEach { it ->
+
+        when (radioGroup.checkedRadioButtonId) {
+            R.id.radioButtonAll -> answerList?.forEach { it ->
                 showingMesage += it.mytoString() + "\n"
             }
+            R.id.radioButtonRight->answerList?.forEach{it ->if(it.answer==it.userAnswer){
+                showingMesage+=it.mytoString()+"\n"
+            }
 
             }
+            R.id.radioButtonWrong->answerList?.forEach { it->if(it.answer!==it.userAnswer){
+                showingMesage+=it.isIncorrect+"\n"
+            }
+
+            }
+        }
         textViewScoreList.setText(showingMesage)
 
-        }
-
-
     }
+
+
+}
 
 
 
