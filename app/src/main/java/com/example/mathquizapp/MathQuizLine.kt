@@ -12,7 +12,8 @@ class MathQuizLine (
     var userAnswer:Int,
     var isCorrect:String="$randNum1 $oprator $randNum2=$userAnswer your answer $answer is correct",
     var isIncorrect:String="$randNum1 $oprator $randNum2=$userAnswer your answer $answer is incorrect"
-) : Parcelable {
+)
+    : Parcelable {
 fun mytoString():String {
     if(answer==userAnswer)
     { return "$randNum1 $oprator $randNum2=$userAnswer your answer $answer is correct"}

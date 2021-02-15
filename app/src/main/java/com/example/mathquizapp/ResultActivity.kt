@@ -54,14 +54,16 @@ class ResultActivity : AppCompatActivity() {
             R.id.radioButtonAll -> answerList?.forEach { it ->
                 showingMesage += it.mytoString() + "\n"
             }
-            R.id.radioButtonRight->answerList?.forEach{it ->if(it.answer==it.userAnswer){
-                showingMesage+=it.mytoString()+"\n"
-            }
+            R.id.radioButtonRight -> answerList?.forEach { it ->
+                if (it.answer == it.userAnswer) {
+                    showingMesage += it.isCorrect + "\n"
+                }
 
             }
-            R.id.radioButtonWrong->answerList?.forEach { it->if(it.answer!==it.userAnswer){
-                showingMesage+=it.isIncorrect+"\n"
-            }
+            R.id.radioButtonWrong -> answerList?.forEach { it ->
+                if (it.answer !== it.userAnswer) {
+                    showingMesage += it.isIncorrect + "\n"
+                }
 
             }
         }
